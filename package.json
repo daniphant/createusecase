@@ -3,7 +3,6 @@
 	"displayName": "Create Express Use Case",
 	"description": "Generates a generic use case boilerplate for Express projects using TypeScript.",
 	"publisher": "daniphant",
-	"icon": "images/logo.png",
 	"repository": {
 		"url": "https://github.com/daniphant/createusecase"
 	},
@@ -42,42 +41,42 @@
           "group": "1_modification"
 				}
 			]
-		}
-	},
-	"configuration": {
-		"title": "Create Express Use Case",
-		"properties": {
-			"createusecase.folderCaseStyle": {
-				"type": "enum",
-				"enum": [
-					"PascalCase",
-					"camelCase",
-					"kebab-case",
-					"snake_case"
-				],
-				"description": "Which case style to use for the folder name.",
-				"default": "PascalCase"
-			},
-			"createusecase.fileCaseStyle": {
-				"type": "enum",
-				"enum": [
-					"PascalCase",
-					"camelCase",
-					"kebab-case",
-					"snake_case"
-				],
-				"description": "Which case style to use for the file name.",
-				"default": "camelCase"
-			},
-			"createusecase.shouldDotFiles": {
-				"type": "boolean",
-				"description": "Determines whether the files should be created with a dot separating the name from the type.\nie: `useCaseName.controller.ts` or `useCaseNameController.ts`",
-				"default": true
-			},
-			"createusecase.ignoreWordCountWarning": {
-				"type": "boolean",
-				"description": "Enable/disable the warning about the word count.",
-				"default": false
+		},
+		"configuration": {
+			"title": "Create Express Use Case",
+			"properties": {
+				"createusecase.folderCaseStyle": {
+					"type": "string",
+					"enum": [
+						"camelCase",
+						"PascalCase",
+						"kebab-case",
+						"snake_case"
+					],
+					"description": "Which case style to use for the folder name.",
+					"default": "PascalCase"
+				},
+				"createusecase.fileCaseStyle": {
+					"type": "string",
+					"enum": [
+						"camelCase",
+						"PascalCase",
+						"kebab-case",
+						"snake_case"
+					],
+					"description": "Which case style to use for the file name.",
+					"default": "camelCase"
+				},
+				"createusecase.shouldDotFiles": {
+					"type": "boolean",
+					"description": "Determines whether the files should be created with a dot separating the name from the type.\nie: `useCaseName.controller.ts` or `useCaseNameController.ts`",
+					"default": true
+				},
+				"createusecase.ignoreWordCountWarning": {
+					"type": "boolean",
+					"description": "Enable/disable the warning about the word count.",
+					"default": false
+				}
 			}
 		}
 	},
