@@ -1,0 +1,102 @@
+{
+  "name": "createusecase",
+	"displayName": "Create Express Use Case",
+	"description": "Generates a generic use case boilerplate for Express projects using TypeScript.",
+	"publisher": "daniphant",
+	"icon": "image/logo.png",
+	"license": "MIT",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.63.0"
+	},
+  "categories": [
+    "Programming Languages",
+    "Snippets"
+  ],
+	"keywords": [
+		"express",
+		"typescript",
+		"usecase",
+		"boilerplate"
+	],
+	"activationEvents": [
+        "onCommand:createusecase.generateBoilerPlate"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "createusecase.generateBoilerPlate",
+				"title": "New UseCase...",
+				"category": "Other"
+			}
+		],
+		"menus": {
+			"explorer/context": [
+				{
+					"when": "explorerResourceIsFolder && !resourceIsRoot",
+					"command": "createusecase.generateBoilerPlate",
+          "group": "1_modification"
+				}
+			]
+		}
+	},
+	"configuration": {
+		"title": "Create Express Use Case",
+		"properties": {
+			"createusecase.folderCaseStyle": {
+				"type": "enum",
+				"enum": [
+					"PascalCase",
+					"camelCase",
+					"kebab-case",
+					"snake_case"
+				],
+				"description": "Which case style to use for the folder name.",
+				"default": "PascalCase"
+			},
+			"createusecase.fileCaseStyle": {
+				"type": "enum",
+				"enum": [
+					"PascalCase",
+					"camelCase",
+					"kebab-case",
+					"snake_case"
+				],
+				"description": "Which case style to use for the file name.",
+				"default": "camelCase"
+			},
+			"createusecase.shouldDotFiles": {
+				"type": "boolean",
+				"description": "Determines whether the files should be created with a dot separating the name from the type.\nie: `useCaseName.controller.ts` or `useCaseNameController.ts`",
+				"default": true
+			},
+			"createusecase.ignoreWordCountWarning": {
+				"type": "boolean",
+				"description": "Enable/disable the warning about the word count.",
+				"default": false
+			}
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "yarn run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "yarn run compile && yarn run lint",
+		"lint": "eslint src --ext ts",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/vscode": "^1.63.0",
+		"@types/glob": "^7.1.4",
+		"@types/mocha": "^9.0.0",
+		"@types/node": "14.x",
+		"@typescript-eslint/eslint-plugin": "^5.1.0",
+		"@typescript-eslint/parser": "^5.1.0",
+		"eslint": "^8.1.0",
+		"glob": "^7.1.7",
+		"mocha": "^9.1.3",
+		"typescript": "^4.4.4",
+		"@vscode/test-electron": "^1.6.2"
+	}
+}
