@@ -1,7 +1,7 @@
-export default (variablaName: string, className: string) => (
-`import { Request, Response } from 'express';
-import ${className}UseCase from './${className}.useCase';
-import { ${className}RequestDto } from './${className}.dto';
+export default (className: string, variablaName: string, dtoFileName: string, useCaseFileName: string) => (
+  `import { Request, Response } from 'express';
+import ${className}UseCase from './${useCaseFileName}';
+import { ${className}RequestDto } from './${dtoFileName}';
 
 export default class ${className}Controller {
   constructor(private readonly ${variablaName}UseCase: ${className}UseCase) {}

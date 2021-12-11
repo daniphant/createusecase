@@ -1,6 +1,6 @@
-export default (variablaName: string, className: string) => (
-`import ${className}UseCase from './${className}.useCase';
-import ${className}Controller from './${className}.controller';
+export default (className: string, variablaName: string, useCaseFileName: string, controllerFileName: string) => (
+  `import ${className}UseCase from './${useCaseFileName}';
+import ${className}Controller from './${controllerFileName}';
 
 const ${variablaName}UseCase = new ${className}UseCase();
 

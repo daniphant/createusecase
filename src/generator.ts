@@ -13,18 +13,30 @@ export const generateBoilerPlate = (name: string, path: string) => {
   // Creating the folder
   const folderPath = path + '/' + formatByCasing(name, folderCaseStyle);
 
-  const variableName = formatByCasing(name, 'camel');
-  const className = formatByCasing(name, 'pascal');
+  const variableName = formatByCasing(name, 'camelCase');
+  const className = formatByCasing(name, 'PascalCase');
+
 
   if (!fs.existsSync(folderPath)) {
     fs.mkdirSync(folderPath);
   }
 
   // Creating the files
-  createFile(name, folderPath, dto(className), 'dto');
-  createFile(name, folderPath, useCase(className), 'useCase');
-  createFile(name, folderPath, controller(variableName, className), 'controller');
-  createFile(name, folderPath, index(variableName, className), 'index');
+  const dtoFileName = resolveFileName(name, folderPath, 'dto');
+  const dtoTemplate = dto(className);
+  fs.writeFileSync(folderPath + '/' + dtoFileName + '.ts', dtoTemplate);
+
+  const useCaseFileName = resolveFileName(name, folderPath, 'useCase');
+  const useCaseTemplate = useCase(className, dtoFileName);
+  fs.writeFileSync(folderPath + '/' + useCaseFileName + '.ts', useCaseTemplate);
+
+  const controllerFileName = resolveFileName(name, folderPath, 'controller');
+  const controllerTemplate = controller(className, variableName, dtoFileName, useCaseFileName);
+  fs.writeFileSync(folderPath + '/' + controllerFileName + '.ts', controllerTemplate);
+
+  const indexFileName = resolveFileName(name, folderPath, 'index');
+  const indexTemplate = index(className, variableName, useCaseFileName, controllerFileName);
+  fs.writeFileSync(folderPath + '/' + indexFileName + '.ts', indexTemplate);
 };
 
 const formatByCasing = (name: string, casing: string = 'camelCase') => {
@@ -43,18 +55,19 @@ const formatByCasing = (name: string, casing: string = 'camelCase') => {
   }
 };
 
-const createFile = (name: string, path: string, template: string, type: string) => {
+const resolveFileName = (name: string, path: string, type: string) => {
   const config = vscode.workspace.getConfiguration("createusecase");
   const fileCaseStyle = config.get("fileCaseStyle") as string;
   const shouldDotFiles = config.get("shouldDotFiles") as boolean;
 
-  const fileName = shouldDotFiles ?
-    formatByCasing(name, fileCaseStyle) + '.' + type + '.ts'
-    :
-    formatByCasing(`${name} ${type}`, fileCaseStyle) + '.ts';
+  const fileName = type === 'index' ?
+    'index.ts' :
+    shouldDotFiles ?
+      formatByCasing(name, fileCaseStyle) + '.' + type
+      :
+      formatByCasing(`${name} ${type}`, fileCaseStyle);
 
-
-  fs.writeFileSync(path + '/' + fileName, template);
+  return fileName;
 };
 
 
