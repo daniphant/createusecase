@@ -3,7 +3,7 @@
 	"displayName": "Create Express Use Case",
 	"description": "Generates a generic use case boilerplate for Express projects using TypeScript.",
 	"publisher": "daniphant",
-	"icon": "image/logo.png",
+	"icon": "images/logo.png",
 	"license": "MIT",
 	"version": "0.0.1",
 	"engines": {
