@@ -4,6 +4,9 @@
 	"description": "Generates a generic use case boilerplate for Express projects using TypeScript.",
 	"publisher": "daniphant",
 	"icon": "images/logo.png",
+	"repository": {
+		"url": "https://github.com/daniphant/createusecase"
+	},
 	"license": "MIT",
 	"version": "0.0.1",
 	"engines": {
