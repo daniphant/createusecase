@@ -49,9 +49,9 @@ const formatByCasing = (name: string, casing: string = 'camelCase') => {
     case 'PascalCase':
       return name.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join('');
     case 'snake_case':
-      return name.replace(/([A-Z])/g, '_$1').toLowerCase();
+      return name.replace(/ /g, '_').toLowerCase();
     case 'kebab-case':
-      return name.replace(/([A-Z])/g, '-$1').toLowerCase();
+      return name.replace(/ /g, '-').toLowerCase();
   }
 };
 
