@@ -16,23 +16,24 @@ export function activate(context: vscode.ExtensionContext) {
 
 async function handleBoilerPlateRequest({ args }: IHandleBoilerPlateProps) {
 	const config = vscode.workspace.getConfiguration("createusecase");
+	const useSameName = config.get("useSameName") as boolean;
 
-	let name = (await vscode.window.showInputBox({
-		placeHolder: 'Enter the name of the use case...',
-		prompt: 'Separate word by word with a space',
+	const folderName = (await vscode.window.showInputBox({
+		placeHolder: 'Enter the name of the use case folder...',
+		prompt: 'Separate words with a space, the casing will be determined by the configuration settings.',
 	}));
 
-	if (!name) {return;}
 
-	const wordCount = name.split(' ').length;
-	
-	if (wordCount === 1 && !(config.get("createusecase.ignoreWordCountWarning") as boolean)) {
-		vscode.window.showWarningMessage(`You have entered ${wordCount} words. Are you sure you separated them with spaces?`);
-	}
+	if (!folderName) { return; }
+
+	const useCaseFileName = useSameName ? folderName : (await vscode.window.showInputBox({
+		placeHolder: 'Enter the name of the use case file...',
+		prompt: 'Separate words with a space, the casing will be determined by the configuration settings.',
+	})) || folderName;
 
 	const path = args.fsPath;
 
-	generateBoilerPlate(name.toLowerCase(), path);
+	generateBoilerPlate(folderName.toLowerCase(), useCaseFileName.toLowerCase(), path);
 	vscode.window.showInformationMessage(`Boilerplate generated successfully!`);
 }
 

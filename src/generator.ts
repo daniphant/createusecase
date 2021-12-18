@@ -6,12 +6,12 @@ import dto from './templates/dto';
 import useCase from './templates/useCase';
 import index from './templates/index';
 
-export const generateBoilerPlate = (name: string, path: string) => {
+export const generateBoilerPlate = (foldername: string, name: string, path: string) => {
   const config = vscode.workspace.getConfiguration("createusecase");
   const folderCaseStyle = config.get("folderCaseStyle") as string;
 
   // Creating the folder
-  const folderPath = path + '/' + formatByCasing(name, folderCaseStyle);
+  const folderPath = path + '/' + formatByCasing(foldername, folderCaseStyle);
 
   const variableName = formatByCasing(name, 'camelCase');
   const className = formatByCasing(name, 'PascalCase');

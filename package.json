@@ -72,9 +72,9 @@
 					"description": "Determines whether the files should be created with a dot separating the name from the type.\nie: `useCaseName.controller.ts` or `useCaseNameController.ts`",
 					"default": true
 				},
-				"createusecase.ignoreWordCountWarning": {
+				"createusecase.useSameName": {
 					"type": "boolean",
-					"description": "Enable/disable the warning about the word count.",
+					"description": "Determines whether the files should be created with the same name as the folder.\nThis is useful when the folder name is the same as the use case name.",
 					"default": false
 				}
 			}
