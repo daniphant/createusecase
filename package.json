@@ -67,6 +67,15 @@
 					"description": "Which case style to use for the file name.",
 					"default": "camelCase"
 				},
+				"createusecase.dtoStyle": {
+					"type": "string",
+					"enum": [
+						"class",
+						"class with constructor",
+						"interface"
+					],
+					"default": "class"
+				},
 				"createusecase.shouldDotFiles": {
 					"type": "boolean",
 					"description": "Determines whether the files should be created with a dot separating the name from the type.\nie: `useCaseName.controller.ts` or `useCaseNameController.ts`",
